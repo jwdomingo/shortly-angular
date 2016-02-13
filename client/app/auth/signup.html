@@ -14,7 +14,8 @@
           class="validate"
           ng-focus="focus1=true; userExists=false;"
           ng-blur="focus1=false; getUser(user.username)"
-          ng-class="{invalid: signForm.user.$invalid || userExists}">
+          ng-class="{invalid: (signForm.user.$invalid && signForm.user.$dirty) || userExists}"
+          required>
         <label
           for="user"
           ng-class="{active: focus1 || user.username || signForm.$invalid}"

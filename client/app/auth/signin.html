@@ -15,7 +15,7 @@
           ng-focus="focus1=true; userExists=true;"
           ng-blur="focus1=false; getUser(user.username)"
           ng-class="{invalid: signForm.user.$invalid || !userExists}">
-        <label for="user" ng-class="{active: focus1 || user.username || signForm.user.$invalid}" data-error="invalid">Userame</label>
+        <label for="user" ng-class="{active: focus1 || user.username || signForm.user.$invalid || !userExists}" data-error="invalid">Userame</label>
       </div>
     </div>
     <div class="row">
