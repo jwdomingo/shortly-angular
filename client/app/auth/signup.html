@@ -1,11 +1,29 @@
-<div id='signup'>
-  <h1>signup</h1>
-  <form name="signForm" ng-submit='signup()'>
-    <input type='text' name="user" ng-model='user.username' ng-trim='false' ng-pattern='/^([A-Za-z]|[0-9]|_)+$/' ng-blur="getUser(user.username)" required>
-    <input type="password" ng-model='user.password' required>
-    <button>signup</button>
+<div id="signup" class="row center-align">
+  <h1>Sign Up</h1>
+  <form ng-submit="signup()" name="signForm" class="col s12">
+    <div class="row">
+      <div class="input-field col s6 offset-s3">
+        <i class="material-icons prefix">account_circle</i>
+        <input ng-model="user.username" id="user" name="user" type="text" ng-trim="false" ng-pattern="/^([A-Za-z]|[0-9]|_)+$/" class="validate" ng-focus="focus1=true" ng-blur="focus1=false; getUser(user.username)">
+        <label for="user"  ng-class="{active: focus1 || user.username || signForm.$invalid}">Userame</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6 offset-s3">
+        <i class="material-icons prefix">lock</i>
+        <input ng-model="user.password" id="pass" type="password" class="validate" ng-focus="focus2=true" ng-blur="focus2=false">
+        <label for="pass" ng-class="{active: focus2 || user.password}">Password</label>
+      </div>
+    </div>
+    <div class="row">
+      <button ng-disable="signForm.$invalid" class="waves-effect waves-light btn hoverable col s4 offset-s4" ng-class="{disabled: signForm.$invalid}">
+        Sign Up
+      </button>
+    </div>
+    <div class="row">
+      Already have an account? <a href="#/signin">Sign In</a>
+    </div>
   </form>
-  <a href="#/signin">Already have an account? <strong>Signin</strong> ...</a>
   <div class="message" ng-if="signForm.user.$dirty && signForm.user.$invalid">Invalid Username</div>
   <div class="message" ng-if="userExists">User already exists!</div>
 </div>
