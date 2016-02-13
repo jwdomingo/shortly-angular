@@ -23,6 +23,6 @@
     <div class="row">
       Don't have an account? <a href="#/signup">Sign Up Now</a>
     </div>
+    <div class="message" ng-if="signForm.user.$dirty && signForm.user.$invalid">Invalid Username</div>
   </form>
-  <div class="message" ng-if="signForm.user.$dirty && signForm.user.$invalid">Invalid Username</div>
 </div>

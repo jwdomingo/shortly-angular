@@ -1,13 +1,13 @@
-<div id='container' ng-controller="LinksController">
-	<ul>
-	<li class="link" ng-repeat="link in data.links track by $index">
-		<img src='/assets/redirect_icon.png'/>
-	  <div class='info'>
-	    <div class='visits'><span class='count'>{{link.visits}}</span>Visits</div>
-	    <div class='title'>{{link.title}}</div>
-	    <div class='original'>{{link.url}}</div>
-	    <a href='{{link.baseUrl}}/{{link.code}}'>{{link.baseUrl}}/{{link.code}}</a>
-	  </div>
-	 </li>
-  <ul>  
+<div ng-controller="LinksController" id="container">
+	<ul class="collection valign-container">
+	  <li class="collection-item avatar valign" ng-repeat="link in data.links | orderBy: '-visits' track by $index">
+	    <img src="/assets/redirect_icon.png" alt="" class="circle">
+			<a href="{{link.baseUrl}}/{{link.code}}">
+				<span class="title">{{link.title}}</span>
+			</a>
+	    <p>{{link.url}}</p>
+			<!-- <i class="secondary-content material-icons">trending-flat</i> -->
+	    <a href="" class="secondary-content">{{link.visits}} visit{{link.visits > 1 ? 's' : ''}}</a>
+	  </li>
+	</ul>
 </div>
