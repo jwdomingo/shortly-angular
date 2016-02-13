@@ -4,7 +4,7 @@ angular.module('shortly.shorten', [])
 	$scope.serverMessage = "";
   $scope.link = {};
   $scope.spinner = false;
-  $scope.addLink = function (url) {  
+  $scope.addLink = function (url) {
     $scope.serverMessage = "";
     $scope.link = {};
     $scope.spinner = true;
@@ -19,11 +19,11 @@ angular.module('shortly.shorten', [])
     });
   };
 
-  $scope.message = function() {
+  $scope.message = function () {
     if ($scope.serverMessage) {
       return $scope.serverMessage;
     } else if ($scope.shortenForm.url.$invalid) {
       return "Please enter a valid URL";
     }
-  }
+  };
 });

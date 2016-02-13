@@ -1,11 +1,12 @@
 <div id='signin'>
   <h1>signin</h1>
   <div class="form-container">	
-	<form name="signinForm" ng-submit='signin()'>
-	<input type='text'ng-model='user.username'>
-	<input type="password" ng-model='user.password'>
-	<button>signin</button>
+	<form name="signForm" ng-submit='signin()'>
+	<input type='text' name="user" ng-model='user.username' ng-trim='false' ng-pattern='/^([A-Za-z]|[0-9]|_)+$/' required>
+	<input type="password" ng-model='user.password' required>
+	<button ng-disable='signForm.$invalid'>signin</button>
 	</form>
 	<a href="#/signup">Don't have an account? <strong>Signup</strong> ...</a>
+	<div class="message" ng-if="signForm.user.$dirty && signForm.user.$invalid">Invalid</div>
   </div>
 </div>
