@@ -7,17 +7,25 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>
   <body>
-    <h1>Shortly</h1>
-    <div class="navigation" ng-if="location.path() === '/links' || location.path() === '/shorten'">
-      <ul>
-        <li><a href="#/links">All Links</a></li>
-        <li><a href="#/shorten">Shorten</a></li>
-      </ul>
-      <a class="signout" href="#/signout">Signout</a>
-    </div>
+    <div class="container">
+      <div class="row left-align">
+        <h1>Shortly</h1>
+      </div>
+      <div class="row" ng-if="location.path() === '/links' || location.path() === '/shorten'">
+        <nav>
+          <div class="nav-wrapper">
+            <ul id="nav-mobile" class="left hide-on-med-and-down">
+              <li><a href="#/links">All Links</a></li>
+              <li><a href="#/shorten">Shorten</a></li>
+              <li><a href="#/signout">Sign Out</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
 
-    <!-- the ng-view directive is where our templates will be loaded into when naviagted to -->
-    <div class="container"><div ng-view></div></div>
+      <!-- the ng-view directive is where our templates will be loaded into when naviagted to -->
+      <div class="row"><div ng-view></div></div>
+    </div>
 
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular-route/angular-route.js"></script>
