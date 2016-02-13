@@ -40,7 +40,7 @@ module.exports = {
     findUser({username: username})
       .then(function (user) {
         if (user) {
-          next(new Error('User already exist!'));
+          next(new Error('User already exists!'));
         } else {
           // make a new user if not one
           return createUser({
@@ -53,6 +53,25 @@ module.exports = {
         // create token to send back for auth
         var token = jwt.encode(user, 'secret');
         res.json({token: token});
+      })
+      .fail(function (error) {
+        next(error);
+      });
+  },
+
+  getUser: function (req, res, next) {
+    var username = req.query.username;
+
+    findUser({username: username})
+      .then(function (user) {
+        if (user) {
+          return user;
+        } else {
+          return null;
+        }
+      })
+      .then(function (user) {
+        res.json(user);
       })
       .fail(function (error) {
         next(error);

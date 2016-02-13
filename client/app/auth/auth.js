@@ -5,6 +5,7 @@ angular.module('shortly.auth', [])
 
 .controller('AuthController', function ($scope, $window, $location, Auth) {
   $scope.user = {};
+  $scope.userExists = false;
 
   $scope.signin = function () {
     Auth.signin($scope.user)
@@ -22,6 +23,21 @@ angular.module('shortly.auth', [])
       .then(function (token) {
         $window.localStorage.setItem('com.shortly', token);
         $location.path('/links');
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  };
+
+  $scope.getUser = function () {
+    Auth.getUser({username: $scope.user.username})
+      .then(function (user) {
+        console.log(JSON.stringify(user));
+        if (user) {
+          $scope.userExists = true;
+        } else {
+          $scope.userExists = false;
+        }
       })
       .catch(function (error) {
         console.error(error);

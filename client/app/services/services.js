@@ -54,6 +54,18 @@ angular.module('shortly.services', [])
     });
   };
 
+  var getUser = function (user) {
+    console.log('userController GET USER:', user);
+    return $http({
+      method: 'GET',
+      url: '/api/users',
+      params: user
+    })
+    .then(function (resp) {
+      return resp.data;
+    });
+  };
+
   var isAuth = function () {
     return !!$window.localStorage.getItem('com.shortly');
   };
@@ -68,6 +80,7 @@ angular.module('shortly.services', [])
     signin: signin,
     signup: signup,
     isAuth: isAuth,
+    getUser: getUser,
     signout: signout
   };
 });
