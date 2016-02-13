@@ -21,7 +21,7 @@ h1 {
   background-color: #eee;
 }
 
-.navigation ul {
+.navigation ul, ul {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -31,13 +31,17 @@ h1 {
   float: left;
 }
 
-.navigation li a {
+.navigation li a, .signout {
   width: 100px;
   height: 20px;
   line-height: 20px;
   padding: 10px;
   display: block;
   text-align: center;
+}
+
+.signout {
+  float: right;
 }
 
 .navigation li a:hover {

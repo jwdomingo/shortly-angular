@@ -3,7 +3,7 @@
     <input class='text' type='text' name='url' ng-model='newUrl'>
     <input type='submit' value='Shorten' ng-click='addLink({url: newUrl}); newUrl = "";'>
   </form>
-  <div class='added-link' ng-if="link.title">
+  <div class='link' ng-if="link.title">
     <img src='/assets/redirect_icon.png'/>
     <div class='info'>
       <div class='visits'><span class='count'>{{link.visits}}</span>Visits</div>
