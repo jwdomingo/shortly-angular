@@ -3,8 +3,17 @@
     <input class='text' type='text' name='url' ng-model='newUrl'>
     <input type='submit' value='Shorten' ng-click='addLink({url: newUrl}); newUrl = "";'>
   </form>
-  <img class='spinner' src='/spiffygif_46x46.gif'>
-  <div class='message'></div>
+  <div class='added-link' ng-if="link">
+    <img src='/assets/redirect_icon.png'/>
+    <div class='info'>
+      <div class='visits'><span class='count'>{{link.visits}}</span>Visits</div>
+      <div class='title'>{{link.title}}</div>
+      <div class='original'>{{link.url}}</div>
+      <a href='{{link.baseUrl}}/{{link.code}}'>{{link.baseUrl}}/{{link.code}}</a>
+    </div>
+  </div>
+  <!-- <img class='spinner' src='/assets/spiffygif_46x46.gif'> -->
+  <div class='message'>{{JSON.stringify(link)}}</div>
 </div>
 
 

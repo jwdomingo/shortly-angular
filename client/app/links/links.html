@@ -1,9 +1,13 @@
 <div id='container' ng-controller="LinksController">
-	<img src='/redirect_icon.png'/>
+	<ul>
+	<li ng-repeat="link in data.links track by $index">
+		<img src='/assets/redirect_icon.png'/>
 	  <div class='info'>
-	    <div class='visits'><span class='count'>{{visits}}</span>Visits</div>
-	    <div class='title'>{{title}}</div>
-	    <div class='original'>{{url}}</div>
-	    <a href='{{baseUrl}}/{{code}}'>{{baseUrl}}/{{code}}</a>
-	  </div>  
+	    <div class='visits'><span class='count'>{{link.visits}}</span>Visits</div>
+	    <div class='title'>{{link.title}}</div>
+	    <div class='original'>{{link.url}}</div>
+	    <a href='{{link.baseUrl}}/{{link.code}}'>{{link.baseUrl}}/{{link.code}}</a>
+	  </div>
+	 </li>
+  <ul>  
 </div>
