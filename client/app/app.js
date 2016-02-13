@@ -17,14 +17,16 @@ angular.module('shortly', [
     })
     .when('/links', {
       templateUrl: 'app/links/links.html',
-      controller: 'LinksController'
+      controller: 'LinksController',
+      authenticate: true
     })
     .when('/shorten', {
       templateUrl: 'app/shorten/shorten.html',
-      controller: 'ShortenController'
+      controller: 'ShortenController',
+      authenticate: true
     })
     .when('/signout', {
-      templateUrl: ' ',
+      templateUrl: 'app/auth/signin.html',
       resolve: {
         signout: ['Auth', function (Auth) {
           Auth.signout();
