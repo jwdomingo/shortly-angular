@@ -1,11 +1,21 @@
 <div id="signin" class="row center-align">
   <h1>Sign In</h1>
-  <form ng-submit="signin()" name="signForm" class="col s12">
+  <form ng-submit="signin()" ng-init="userExists=true" name="signForm" class="col s12">
     <div class="row">
       <div class="input-field col s6 offset-s3">
         <i class="material-icons prefix">account_circle</i>
-        <input ng-model="user.username" id="user" type="text" ng-trim="false" ng-pattern="/^([A-Za-z]|[0-9]|_)+$/" class="validate" ng-focus="focus1=true" ng-blur="focus1=false">
-        <label for="user"  ng-class="{active: focus1 || user.username || signForm.$invalid}">Userame</label>
+        <input
+          ng-model="user.username"
+          id="user"
+          name="user"
+          type="text"
+          ng-trim="false"
+          ng-pattern="/^([A-Za-z]|[0-9]|_)+$/"
+          class="validate"
+          ng-focus="focus1=true; userExists=true;"
+          ng-blur="focus1=false; getUser(user.username)"
+          ng-class="{invalid: signForm.user.$invalid || !userExists}">
+        <label for="user" ng-class="{active: focus1 || user.username || signForm.user.$invalid}" data-error="invalid">Userame</label>
       </div>
     </div>
     <div class="row">
@@ -23,6 +33,5 @@
     <div class="row">
       Don't have an account? <a href="#/signup">Sign Up Now</a>
     </div>
-    <div class="message" ng-if="signForm.user.$dirty && signForm.user.$invalid">Invalid Username</div>
   </form>
 </div>

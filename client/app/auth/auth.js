@@ -5,7 +5,6 @@ angular.module('shortly.auth', [])
 
 .controller('AuthController', function ($scope, $window, $location, Auth) {
   $scope.user = {};
-  $scope.userExists = false;
 
   $scope.signin = function () {
     Auth.signin($scope.user)
@@ -32,7 +31,7 @@ angular.module('shortly.auth', [])
   $scope.getUser = function () {
     Auth.getUser({username: $scope.user.username})
       .then(function (user) {
-        console.log(JSON.stringify(user));
+        console.log('AUTH user:', JSON.stringify(user));
         if (user) {
           $scope.userExists = true;
         } else {
