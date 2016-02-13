@@ -1,9 +1,10 @@
 <div id='signup'>
   <h1>signup</h1>
-  <form name="signupForm" ng-submit='signup()'>
-    <input type='text' ng-model='user.username'>
-    <input type="password" ng-model='user.password'>
+  <form name="signForm" ng-submit='signup()'>
+    <input type='text' name="user" ng-model='user.username' ng-trim='false' ng-pattern='/^([A-Za-z]|[0-9]|_)+$/' required>
+    <input type="password" ng-model='user.password' required>
     <button>signup</button>
   </form>
   <a href="#/signin">Already have an account? <strong>Signin</strong> ...</a>
+  <div class="message" ng-if="signForm.user.$dirty && signForm.user.$invalid">Invalid</div>
 </div>
