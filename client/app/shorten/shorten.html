@@ -1,19 +1,19 @@
-<div id='container'>
+<div id="container">
 	<form name="shortenForm">
-    <input class='text' type='url' name='url' ng-model='newUrl' >
+    <input class="text" type="url" name="url" ng-model="newUrl" >
 		<div class="progress" ng-if="spinner">
 			<div class="indeterminate"></div>
 		</div>
-    <input type='submit' value='Shorten' ng-disabled='shortenForm.$invalid' ng-click='addLink({url: newUrl}); newUrl = ""'>
+    <input type="submit" value="Shorten" ng-disabled="shortenForm.$invalid" ng-click="addLink({url: newUrl}); newUrl=''">
   </form>
-  <div class='message' ng-if='message()'>{{ message() }}</div>
-  <div class='link' ng-if="link.title">
-    <img src='/assets/redirect_icon.png'/>
-    <div class='info'>
-      <div class='visits'><span class='count'>{{ link.visits }}</span>Visits</div>
-      <div class='title'>{{ link.title }}</div>
-      <div class='original'>{{ link.url }}</div>
-      <a href='{{ link.baseUrl }}/{{ link.code }}'>{{ link.baseUrl }}/{{link.code }}</a>
+  <div class="message" ng-if="message()">{{ message() }}</div>
+  <div class="link" ng-if="link.title">
+    <img src="/assets/redirect_icon.png"/>
+    <div class="info">
+      <div class="visits"><span class="count">{{ link.visits }}</span>Visits</div>
+      <div class="title">{{ link.title }}</div>
+      <div class="original">{{ link.url }}</div>
+      <a href="{{ link.baseUrl }}/{{ link.code }}">{{ link.baseUrl }}/{{link.code }}</a>
     </div>
   </div>
 </div>

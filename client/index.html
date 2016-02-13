@@ -7,24 +7,32 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>
   <body>
-    <div class="container">
+    <div ng-controller="SearchController" class="container">
       <div class="row left-align">
         <h1>Shortly</h1>
       </div>
       <div class="row" ng-if="location.path() === '/links' || location.path() === '/shorten'">
         <nav>
           <div class="nav-wrapper">
-            <ul id="nav-mobile" class="left hide-on-sm">
+            <ul id="nav-mobile" class="left hide-on-sm col s12">
               <li><a href="#/links">All Links</a></li>
               <li><a href="#/shorten">Shorten</a></li>
-              <li><a href="#/signout">Sign Out</a></li>
+              <li>
+                <form class="left">
+                  <div class="input-field">
+                    <input ng-model="search.string" id="search" type="search" required>
+                    <label for="search"><i class="material-icons">search</i></label>
+                    <i class="material-icons">close</i>
+                  </div>
+                </form>
+              </li>
+              <li class="right"><a href="#/signout">Sign Out</a></li>
             </ul>
           </div>
         </nav>
       </div>
-
       <!-- the ng-view directive is where our templates will be loaded into when naviagted to -->
-      <div class="row"><div ng-view></div></div>
+      <div ng-view></div>
     </div>
 
     <script src="lib/angular/angular.js"></script>

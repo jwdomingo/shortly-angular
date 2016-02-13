@@ -1,6 +1,6 @@
 <div ng-controller="LinksController" id="container">
 	<ul class="collection valign-container">
-	  <li class="collection-item avatar valign" ng-repeat="link in data.links | orderBy: '-visits' track by $index">
+		<li class="collection-item avatar valign" ng-repeat="link in data.links | orderBy: '-visits' | filter: search.string track by $index">
 	    <img src="/assets/redirect_icon.png" alt="" class="circle">
 			<a href="{{link.baseUrl}}/{{link.code}}">
 				<span class="title">{{link.title}}</span>
