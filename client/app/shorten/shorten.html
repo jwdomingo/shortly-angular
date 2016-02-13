@@ -1,19 +1,38 @@
 <div id="container">
-	<form name="shortenForm">
-    <input class="text" type="url" name="url" ng-model="newUrl" >
-		<div class="progress" ng-if="spinner">
-			<div class="indeterminate"></div>
+	<form ng-submit="addLink({url: newUrl}); newUrl=''" name="shortForm">
+		<div class="input-field row">
+			<div class="col s8">
+				<i class="material-icons prefix">polymer</i>
+		    <input
+					ng-model="newUrl"
+						ng-focus="focus=true"
+						ng-blur="focus=false"
+						class="validate"
+						ng-class="{invalid: (shortForm.url.$invalid && shortForm.url.$dirty)}"
+						id="url"
+						type="url"
+						name="url">
+				<label
+					for="url"
+					ng-class="{active: focus || newUrl || shortForm.url.$invalid}"
+					data-error="invalid">Link</label>
+			</div>
+			<div class="progress col s4" ng-if="spinner">
+				<div class="indeterminate"></div>
+			</div>
 		</div>
-    <input type="submit" value="Shorten" ng-disabled="shortenForm.$invalid" ng-click="addLink({url: newUrl}); newUrl=''">
   </form>
-  <div class="message" ng-if="message()">{{ message() }}</div>
-  <div class="link" ng-if="link.title">
-    <img src="/assets/redirect_icon.png"/>
-    <div class="info">
-      <div class="visits"><span class="count">{{ link.visits }}</span>Visits</div>
-      <div class="title">{{ link.title }}</div>
-      <div class="original">{{ link.url }}</div>
-      <a href="{{ link.baseUrl }}/{{ link.code }}">{{ link.baseUrl }}/{{link.code }}</a>
-    </div>
-  </div>
+	<!-- // make this pretty lol -->
+  <div class="message" ng-if="message()">{{message()}}</div>
+
+	<ul ng-if="link.title" class="collection valign-container">
+		<li class="collection-item avatar valign">
+			<img src="/assets/redirect_icon.png" alt="" class="circle">
+			<a href="{{link.baseUrl}}/{{link.code}}">
+				<span class="title">{{link.title}}</span>
+			</a>
+			<p>{{link.url}}</p>
+			<a href="" class="secondary-content">{{link.visits}} visit{{link.visits > 1 ? 's' : ''}}</a>
+		</li>
+	</ul>
 </div>

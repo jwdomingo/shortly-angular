@@ -22,7 +22,7 @@ angular.module('shortly.shorten', [])
   $scope.message = function () {
     if ($scope.serverMessage) {
       return $scope.serverMessage;
-    } else if ($scope.shortenForm.url.$invalid) {
+    } else if ($scope.shortForm.url.$invalid) {
       return "Please enter a valid URL";
     }
   };
