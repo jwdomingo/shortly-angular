@@ -15,10 +15,10 @@
       <div class="row" ng-if="location.path() === '/links' || location.path() === '/shorten'">
         <nav>
           <div class="nav-wrapper">
-            <ul id="nav-mobile" class="left hide-on-sm col s12">
+            <ul id="nav-mobile" class="left col s12">
               <li><a href="#/links">All Links</a></li>
               <li><a href="#/shorten">Shorten</a></li>
-              <li>
+              <li class="hide-on-small-only">
                 <form class="left">
                   <div class="input-field">
                     <input ng-model="search.string" id="search" type="search" required>
