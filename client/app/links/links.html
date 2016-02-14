@@ -1,11 +1,13 @@
 <div ng-controller="LinksController" id="container">
 	<ul class="collection valign-container">
-		<li class="collection-item avatar valign" ng-repeat="link in data.links | orderBy: '-visits' | filter: search.string track by $index">
-	    <img src="/assets/redirect_icon.png" alt="" class="circle">
-			<a class="truncate row" href="{{link.baseUrl}}/{{link.code}}">
-				<span class="title truncate col s10">{{link.title}}</span>
-			</a>
-	    <p class="truncate">{{link.url}}</p>
+		<li class="collection-item avatar valign fx-fade-right-big" ng-repeat="link in data.links | orderBy: '-visits' | filter: search.string track by $index">
+	    <img src="{{link.favicon || '/assets/redirect_icon.png'}}" alt="" class="circle">
+			<div class="row">
+				<a class="truncate" href="{{link.baseUrl}}/{{link.code}}">
+					<span class="title truncate col s10">{{link.title}}</span>
+				</a>
+				<p class="truncate col s10">{{link.url}}</p>
+			</div>
 			<!-- <i class="secondary-content material-icons">trending-flat</i> -->
 	    <a href="" class="secondary-content">{{link.visits}} visit{{link.visits > 1 ? 's' : ''}}</a>
 	  </li>

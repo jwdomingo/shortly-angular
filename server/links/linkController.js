@@ -1,3 +1,5 @@
+var urlParser = require('url');
+
 var Link = require('./linkModel.js');
     Q = require('q');
     util = require('../config/utils.js');
@@ -39,7 +41,8 @@ module.exports = {
             url: url,
             visits: 0,
             base_url: req.headers.origin,
-            title: title
+            title: title,
+            favicon: urlParser.parse(url).protocol + '//' + urlParser.parse(url).host + '/favicon.ico'
           };
           return createLink(newLink);
         }

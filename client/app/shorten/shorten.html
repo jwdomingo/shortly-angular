@@ -27,7 +27,7 @@
 
 	<ul ng-if="link.title" class="collection valign-container">
 		<li class="collection-item avatar valign">
-			<img src="/assets/redirect_icon.png" alt="" class="circle">
+			<img src="{{link.favicon || '/assets/redirect_icon.png'}}" alt="" class="circle">
 			<a href="{{link.baseUrl}}/{{link.code}}">
 				<span class="title">{{link.title}}</span>
 			</a>
