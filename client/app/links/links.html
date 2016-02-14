@@ -1,4 +1,5 @@
 <div ng-controller="LinksController" id="container">
+	<div id="graph"><svg></svg></div>
 	<ul class="collection valign-container">
 		<li class="collection-item avatar valign fx-fade-right-big" ng-repeat="link in data.links | orderBy: '-visits' | filter: search.string track by $index">
 	    <img src="{{link.favicon || '/assets/redirect_icon.png'}}" alt="" class="circle">
