@@ -15,35 +15,79 @@ angular.module('shortly.links', [])
       var color = d3.scale.category20();
 
       var pie = d3.layout.pie()
-          .value(function (d) {
-            return d.visits;
-          }).sort(null);
+        .value(function (d) {
+          return d.visits;
+        }).sort(null);
 
       var arc = d3.svg.arc()
-          .innerRadius(radius - 100)
-          .outerRadius(radius - 20);
+        .innerRadius(radius - 100)
+        .outerRadius(radius - 20);
 
-      var svg = d3.select("svg")
-          .attr("width", width)
-          .attr("height", height)
-        .append("g")
-          .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+      var translate = 'translate(' + width / 2 + ',' + height / 2 + ') ';
 
-        var path = svg.datum($scope.data.links).selectAll("path")
-            .data(pie)
-          .enter().append("path")
-            .attr("fill", function (d, i) {
+      var svg = d3.select('svg')
+        .attr({
+          'id': 'visits',
+          'width': width,
+          'height': height })
+        .call(responsivefy)
+        .append("g");
+
+      var path = svg.datum($scope.data.links).selectAll("path")
+        .data(pie).enter()
+        .append("path")
+          .attr({
+            'd': arc,
+            'fill': function (d, i) {
               return color(i);
-            })
-            .attr("d", arc)
-            .select('text')
-            .data($scope.data.links).enter().append('text')
-            .text(function (d) {
-              return d.title;
-            }).attr('x', d);
+            }
+          })
+        .select('text')
+          .data($scope.data.links).enter()
+          .append('text')
+          .text(function (d) {
+            return d.title;
+          }).attr('x', 1);
 
-        d3.selectAll("input")
-          .on("change", $scope.change);
+      var rotate = function () {
+        var i = d3.interpolate(0, 360);
+        return function (t) {
+            return translate + 'rotate(' + i(t) + ',0,0)';
+        };
+      };
+
+      var spin = function () {
+        svg.transition().duration(8000).ease('linear')
+        .attrTween('transform', rotate)
+        .each('end', spin);
+      };
+
+      spin();
+
+      function responsivefy(svg) {
+        var container = d3.select('#graph');
+        var width = parseInt(svg.style('width'));
+        var height = parseInt(svg.style('height'));
+        var aspect = width / height;
+
+        svg.attr({
+          'viewBox': '0 0 ' + width + ' ' + height,
+          'perserveAspectRatio': 'xMinYMid'
+        }).call(resize);
+
+        d3.select(window).on('resize', resize);
+
+        function resize() {
+          var targetWidth = parseInt(container.style('width'));
+          svg.attr({
+            'width': targetWidth,
+            'height': Math.round(targetWidth / aspect)
+          });
+        }
+      }
+
+      d3.selectAll("input")
+        .on("change", $scope.change);
 
         // var timeout = setTimeout(function () {
         //   d3.select("input[value=\"oranges\"]").property("checked", true).each(change);
