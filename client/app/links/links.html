@@ -1,9 +1,9 @@
 <div ng-controller="LinksController" id="container">
 	<div id="graph"><svg></svg></div>
-	<ul class="collection valign-container">
-		<li class="collection-item avatar valign fx-fade-right-big" ng-repeat="link in data.links | orderBy: '-visits' | filter: search.string track by $index">
+	<ul class="collection">
+		<li id="link-item" class="collection-item avatar" ng-repeat="link in data.links | orderBy: '-visits' | filter: search.string track by $index">
 	    <img src="{{link.favicon || '/assets/redirect_icon.png'}}" alt="" class="circle">
-			<div class="row">
+			<div id="link-row" class="row">
 				<a class="truncate" href="{{link.baseUrl}}/{{link.code}}">
 					<span class="title truncate col s10">{{link.title}}</span>
 				</a>

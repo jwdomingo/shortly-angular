@@ -1,3 +1,11 @@
 #search-container {
 	width: 200%;
 }
+
+#link-row {
+	margin-bottom: 0;
+}
+
+li#link-item {
+	min-height: 0;
+}

@@ -1,7 +1,7 @@
 <div id="container">
 	<form ng-submit="addLink({url: newUrl}); newUrl=''" name="shortForm">
 		<div class="input-field row">
-			<div class="col s8">
+			<div class="col s12">
 				<i class="material-icons prefix">polymer</i>
 		    <input
 					ng-model="newUrl"
@@ -17,7 +17,7 @@
 					ng-class="{active: focus || newUrl || shortForm.url.$invalid}"
 					data-error="invalid">Link</label>
 			</div>
-			<div class="progress col s4" ng-if="spinner">
+			<div class="progress col s12" ng-if="spinner">
 				<div class="indeterminate"></div>
 			</div>
 		</div>

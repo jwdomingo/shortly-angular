@@ -9,7 +9,7 @@ angular.module('shortly.links', [])
   .then(function () {
     D3.d3().then(function (d3) {
       var width = 960;
-      var height = 500;
+      var height = 400;
       var radius = Math.min(width, height) / 2;
 
       var color = d3.scale.category20();
@@ -20,7 +20,7 @@ angular.module('shortly.links', [])
         }).sort(null);
 
       var arc = d3.svg.arc()
-        .innerRadius(radius - 100)
+        .innerRadius(radius - 70)
         .outerRadius(radius - 20);
 
       var translate = 'translate(' + width / 2 + ',' + height / 2 + ') ';
@@ -41,27 +41,17 @@ angular.module('shortly.links', [])
             'fill': function (d, i) {
               return color(i);
             }
-          })
-        .select('text')
-          .data($scope.data.links).enter()
-          .append('text')
-          .text(function (d) {
-            return d.title;
-          }).attr('x', 1);
-
-      var rotate = function () {
-        var i = d3.interpolate(0, 360);
-        return function (t) {
-            return translate + 'rotate(' + i(t) + ',0,0)';
-        };
-      };
+          });
 
       var spin = function () {
         svg.transition().duration(8000).ease('linear')
-        .attrTween('transform', rotate)
-        .each('end', spin);
+        .attrTween('transform', function () {
+          var i = d3.interpolate(0, 360);
+          return function (t) {
+            return translate + 'rotate(' + i(t) + ',0,0)';
+          };
+        }).each('end', spin);
       };
-
       spin();
 
       function responsivefy(svg) {
@@ -94,9 +84,11 @@ angular.module('shortly.links', [])
         // }, 2000);
 
         $scope.change = function () {
-          // var value = this.value;
+          var value = this.value;
           // clearTimeout(timeout);
-          // pie.value(function (d) { return d[value]; }); // change the value function
+          pie.value(function (d) {
+            return d[value];
+          }); // change the value function
           path = path.data(pie); // compute the new angles
           path.attr("d", arc); // redraw the arcs
         };
